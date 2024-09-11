@@ -3,11 +3,13 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:orientation="horizontal"
     android:paddingBottom="8dp"
     android:paddingEnd="16dp"
     android:paddingStart="16dp"
-    android:paddingTop="8dp">
+    android:paddingTop="8dp"
+    android:background="@color/md_theme_background">
 
     <TextView
         android:id="@+id/title"
@@ -15,7 +17,7 @@
         android:layout_height="wrap_content"
         android:layout_gravity="center_vertical"
         android:layout_weight="1"
-        android:textColor="?android:textColorPrimary"
+        android:textColor="@color/md_theme_onPrimary"
         android:textSize="16sp"
         tools:text="Title" />
 
@@ -23,7 +25,9 @@
         style="@style/Widget.MaterialComponents.TextInputLayout.FilledBox.ExposedDropdownMenu"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:hint="@string/title_theme">
+        android:hint="@string/title_theme"
+        app:boxBackgroundColor="@color/md_theme_surface"
+        app:boxStrokeColor="@color/md_theme_outline">
 
         <AutoCompleteTextView
             android:id="@+id/spinner"
@@ -31,7 +35,8 @@
             android:layout_height="wrap_content"
             android:inputType="none"
             android:focusable="false"
-            android:hint="@string/title_theme" />
+            android:hint="@string/title_theme"
+            android:textColor="@color/md_theme_onSurface" />
 
     </com.google.android.material.textfield.TextInputLayout>
 

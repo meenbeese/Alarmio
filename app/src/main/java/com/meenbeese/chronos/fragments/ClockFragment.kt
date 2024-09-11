@@ -16,6 +16,7 @@ import java.util.TimeZone
 
 class ClockFragment : BasePagerFragment() {
     private var timezone: String? = null
+
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
@@ -28,6 +29,7 @@ class ClockFragment : BasePagerFragment() {
             timezone = arguments?.getString(EXTRA_TIME_ZONE)
             timezone?.let {
                 clockView.setTimezone(it)
+                clockView.setTextStyle(DigitalClockView.TextStyle.UNDERLINE)
                 if (it != TimeZone.getDefault().id) {
                     timezoneView.text = String.format(
                         "%s\n%s",
@@ -45,9 +47,7 @@ class ClockFragment : BasePagerFragment() {
     }
 
     class Instantiator(context: Context?, private val timezone: String?) :
-        ContextFragmentInstantiator(
-            context!!
-        ) {
+        ContextFragmentInstantiator(context!!) {
         override fun getTitle(context: Context?, position: Int): String? {
             return timezone
         }

@@ -6,7 +6,8 @@
     android:layout_height="wrap_content"
     android:orientation="vertical"
     android:paddingBottom="18dp"
-    android:paddingTop="18dp">
+    android:paddingTop="18dp"
+    android:background="@color/md_theme_background">
 
     <TextView
         android:id="@+id/title"
@@ -14,7 +15,7 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="16dp"
         android:layout_marginEnd="16dp"
-        android:textColor="?android:textColorPrimary"
+        android:textColor="@color/md_theme_onPrimary"
         android:textSize="16sp"
         tools:text="Title" />
 
@@ -40,7 +41,7 @@
             android:layout_height="42dp"
             android:background="?attr/selectableItemBackgroundBorderless"
             android:scaleType="centerInside"
-            tools:tint="@color/textColorPrimaryNight"
+            app:tint="@color/md_theme_onPrimary"
             app:srcCompat="@drawable/ic_add" />
 
         <ImageView
@@ -49,7 +50,7 @@
             android:layout_height="42dp"
             android:background="?attr/selectableItemBackgroundBorderless"
             android:scaleType="centerInside"
-            tools:tint="@color/textColorPrimaryNight"
+            app:tint="@color/md_theme_onPrimary"
             app:srcCompat="@drawable/ic_remove" />
 
     </LinearLayout>

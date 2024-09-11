@@ -37,8 +37,8 @@
             android:background="?attr/selectableItemBackgroundBorderless"
             android:scaleType="centerInside"
             android:visibility="visible"
-            app:srcCompat="@drawable/ic_backspace"
-            app:tint="@color/textColorPrimaryNight" />
+            app:srcCompat="@drawable/ic_backspace" />
+<!--            app:tint="@color/textColorPrimaryNight" />-->
 
     </LinearLayout>
 

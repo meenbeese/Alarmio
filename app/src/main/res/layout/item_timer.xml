@@ -5,7 +5,8 @@
     android:layout_width="match_parent"
     android:paddingTop="8dp"
     android:paddingBottom="8dp"
-    android:layout_height="wrap_content">
+    android:layout_height="wrap_content"
+    android:background="@color/md_theme_background">
 
     <com.meenbeese.chronos.views.ProgressLineView
         android:id="@+id/progress"
@@ -27,7 +28,7 @@
             android:layout_marginStart="4dp"
             android:layout_marginEnd="4dp"
             android:layout_weight="1"
-            android:textColor="?android:textColorPrimary"
+            android:textColor="@color/md_theme_onPrimary"
             android:textSize="18sp"
             android:textStyle="bold"
             tools:text="1m 32s" />
@@ -40,7 +41,7 @@
             android:layout_marginEnd="4dp"
             android:background="?attr/selectableItemBackgroundBorderless"
             android:scaleType="centerInside"
-            tools:tint="@color/textColorPrimaryNight"
+            app:tint="@color/md_theme_onPrimary"
             app:srcCompat="@drawable/ic_close" />
 
     </LinearLayout>

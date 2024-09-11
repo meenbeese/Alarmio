@@ -1,10 +1,12 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:animateLayoutChanges="true"
-    android:orientation="vertical">
+    android:orientation="vertical"
+    android:background="@color/md_theme_background">
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -21,7 +23,7 @@
             android:layout_gravity="center_vertical"
             android:layout_weight="1"
             android:text="@string/title_theme"
-            android:textColor="?android:textColorPrimary"
+            android:textColor="@color/md_theme_onPrimary"
             android:textSize="16sp" />
 
         <com.google.android.material.textfield.TextInputLayout
@@ -29,7 +31,9 @@
             android:id="@+id/themeDropdown"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:hint="@string/title_theme">
+            android:hint="@string/title_theme"
+            app:boxBackgroundColor="@color/md_theme_surface"
+            app:boxStrokeColor="@color/md_theme_outline">
 
             <AutoCompleteTextView
                 android:id="@+id/themeSpinner"
@@ -37,7 +41,8 @@
                 android:layout_height="wrap_content"
                 android:inputType="none"
                 android:focusable="false"
-                android:hint="@string/title_theme" />
+                android:hint="@string/title_theme"
+                android:textColor="@color/md_theme_onSurface" />
 
         </com.google.android.material.textfield.TextInputLayout>
 
@@ -79,7 +84,7 @@
                 android:layout_gravity="center"
                 android:gravity="center"
                 android:textAlignment="center"
-                android:textColor="?android:textColorPrimary"
+                android:textColor="@color/md_theme_onPrimary"
                 android:textSize="26sp"
                 tools:text="0:00" />
 
@@ -110,7 +115,7 @@
                 android:layout_gravity="center"
                 android:gravity="center"
                 android:textAlignment="center"
-                android:textColor="?android:textColorPrimary"
+                android:textColor="@color/md_theme_onPrimary"
                 android:textSize="26sp"
                 tools:text="0:00" />
 

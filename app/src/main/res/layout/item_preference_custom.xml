@@ -2,12 +2,12 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:background="?selectableItemBackground"
     android:orientation="horizontal"
     android:paddingBottom="18dp"
     android:paddingEnd="16dp"
     android:paddingStart="16dp"
-    android:paddingTop="18dp">
+    android:paddingTop="18dp"
+    android:background="@color/md_theme_background">
 
     <TextView
         android:id="@+id/name"
@@ -16,7 +16,7 @@
         android:layout_gravity="center_vertical"
         android:layout_weight="1"
         android:text="@string/title_default_alarm_ringtone"
-        android:textColor="?android:textColorPrimary"
+        android:textColor="@color/md_theme_onPrimary"
         android:textSize="16sp" />
 
     <TextView
@@ -25,7 +25,7 @@
         android:layout_height="wrap_content"
         android:layout_gravity="center_vertical"
         android:text="@string/title_sound_none"
-        android:textColor="?android:textColorSecondary"
+        android:textColor="@color/md_theme_onSecondary"
         android:textSize="16sp" />
 
 </LinearLayout>

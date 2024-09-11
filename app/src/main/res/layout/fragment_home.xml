@@ -3,7 +3,8 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    xmlns:tools="http://schemas.android.com/tools">
+    xmlns:tools="http://schemas.android.com/tools"
+    android:background="@color/md_theme_background">
 
     <FrameLayout
         android:id="@+id/timeContainer"
@@ -21,7 +22,8 @@
             android:id="@+id/overlay"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:alpha="0.5" />
+            android:alpha="0.5"
+            android:background="@color/md_theme_surface"/>
 
         <androidx.viewpager.widget.ViewPager
             android:id="@+id/timePager"
@@ -42,7 +44,7 @@
         android:id="@+id/bottomSheet"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:background="@color/colorPrimary"
+        android:background="@color/md_theme_primary"
         android:orientation="vertical"
         app:layout_behavior="com.meenbeese.chronos.utils.ScrollableBottomSheetBehavior">
 
@@ -50,7 +52,9 @@
             android:id="@+id/tabLayout"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            app:tabMode="fixed" />
+            app:tabMode="fixed"
+            app:tabTextColor="@color/md_theme_onPrimary"
+            app:tabSelectedTextColor="@color/md_theme_onPrimaryContainer" />
 
         <androidx.viewpager.widget.ViewPager
             android:id="@+id/viewPager"
@@ -70,6 +74,8 @@
         android:clickable="true"
         android:focusable="true"
         app:sdMainFabClosedSrc="@drawable/ic_add"
-        app:sdUseReverseAnimationOnClose="true" />
+        app:sdUseReverseAnimationOnClose="true"
+        app:sdMainFabClosedBackgroundColor="@color/md_theme_secondary"
+        app:sdMainFabClosedIconColor="@color/md_theme_onSecondary" />
 
 </androidx.coordinatorlayout.widget.CoordinatorLayout>

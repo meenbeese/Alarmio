@@ -5,7 +5,8 @@
     android:layout_height="match_parent"
     android:minHeight="512dp"
     android:minWidth="350dp"
-    android:orientation="vertical">
+    android:orientation="vertical"
+    android:background="@color/md_theme_background">
 
     <include
         layout="@layout/content_numpad"
@@ -33,7 +34,7 @@
             android:alpha="0.333"
             android:scaleType="centerInside"
             app:srcCompat="@drawable/ic_ringtone_disabled"
-            app:tint="@color/textColorPrimaryNight" />
+            app:tint="@color/md_theme_onPrimary" />
 
         <TextView
             android:id="@+id/ringtoneText"
@@ -43,7 +44,7 @@
             android:layout_marginEnd="4dp"
             android:layout_weight="1"
             android:text="@string/title_sound_none"
-            android:textColor="?android:textColorPrimary"
+            android:textColor="@color/md_theme_onPrimary"
             android:textSize="16sp"
             android:textStyle="bold" />
 
@@ -54,7 +55,7 @@
             android:layout_marginEnd="4dp"
             android:scaleType="centerInside"
             app:srcCompat="@drawable/ic_expand"
-            app:tint="@color/textColorPrimaryNight" />
+            app:tint="@color/md_theme_onPrimary" />
 
     </LinearLayout>
 
@@ -76,7 +77,7 @@
             android:layout_marginEnd="4dp"
             android:scaleType="centerInside"
             app:srcCompat="@drawable/ic_vibrate"
-            app:tint="@color/textColorPrimaryNight" />
+            app:tint="@color/md_theme_onPrimary" />
 
         <TextView
             android:layout_width="0dp"
@@ -85,7 +86,7 @@
             android:layout_marginEnd="4dp"
             android:layout_weight="1"
             android:text="@string/title_vibrate"
-            android:textColor="?android:textColorPrimary"
+            android:textColor="@color/md_theme_onPrimary"
             android:textSize="16sp"
             android:textStyle="bold" />
 
@@ -110,7 +111,7 @@
             android:paddingTop="8dp"
             android:text="@android:string/cancel"
             android:textAllCaps="true"
-            android:textColor="?android:textColorPrimary"
+            android:textColor="@color/md_theme_onPrimary"
             android:textSize="16sp"
             android:textStyle="bold" />
 
@@ -125,7 +126,7 @@
             android:paddingTop="8dp"
             android:text="@string/title_start_timer"
             android:textAllCaps="true"
-            android:textColor="?android:textColorPrimary"
+            android:textColor="@color/md_theme_onPrimary"
             android:textSize="16sp"
             android:textStyle="bold" />
 
