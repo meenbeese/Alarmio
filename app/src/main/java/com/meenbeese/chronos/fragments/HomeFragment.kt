@@ -1,7 +1,6 @@
 package com.meenbeese.chronos.fragments
 
 import android.app.AlarmManager
-import android.app.TimePickerDialog
 import android.content.Context
 import android.os.Bundle
 import android.provider.AlarmClock
@@ -15,11 +14,11 @@ import androidx.coordinatorlayout.widget.CoordinatorLayout
 import androidx.core.content.ContextCompat
 import androidx.viewpager.widget.ViewPager
 
-import com.meenbeese.chronos.Chronos
 import com.meenbeese.chronos.R
 import com.meenbeese.chronos.adapters.SimplePagerAdapter
 import com.meenbeese.chronos.data.PreferenceData
 import com.meenbeese.chronos.dialogs.TimerDialog
+import com.meenbeese.chronos.dialogs.TimePickerDialog
 import com.meenbeese.chronos.interfaces.FragmentInstantiator
 import com.meenbeese.chronos.utils.DimenUtils.getStatusBarHeight
 import com.meenbeese.chronos.utils.ImageUtils.getBackgroundImage
@@ -134,24 +133,30 @@ class HomeFragment : BaseFragment() {
         speedDialView.addActionItem(
             SpeedDialActionItem
                 .Builder(R.id.alarm_fab, R.drawable.ic_alarm_add)
+                .setFabBackgroundColor(ContextCompat.getColor(requireContext(), R.color.colorAccent))
+                .setFabImageTintColor(ContextCompat.getColor(requireContext(), R.color.colorPrimary))
+                .setLabelColor(ContextCompat.getColor(requireContext(), R.color.textColorSecondary))
                 .setLabel(R.string.title_set_alarm)
-                .setLabelBackgroundColor(getFabLabelBgColor(requireContext()))
                 .setLabelClickable(true)
                 .create()
         )
         speedDialView.addActionItem(
             SpeedDialActionItem
                 .Builder(R.id.timer_fab, R.drawable.ic_timer)
+                .setFabBackgroundColor(ContextCompat.getColor(requireContext(), R.color.colorAccent))
+                .setFabImageTintColor(ContextCompat.getColor(requireContext(), R.color.colorPrimary))
+                .setLabelColor(ContextCompat.getColor(requireContext(), R.color.textColorSecondary))
                 .setLabel(R.string.title_set_timer)
-                .setLabelBackgroundColor(getFabLabelBgColor(requireContext()))
                 .setLabelClickable(true)
                 .create()
         )
         speedDialView.addActionItem(
             SpeedDialActionItem
                 .Builder(R.id.stopwatch_fab, R.drawable.ic_stopwatch)
+                .setFabBackgroundColor(ContextCompat.getColor(requireContext(), R.color.colorAccent))
+                .setFabImageTintColor(ContextCompat.getColor(requireContext(), R.color.colorPrimary))
+                .setLabelColor(ContextCompat.getColor(requireContext(), R.color.textColorSecondary))
                 .setLabel(R.string.title_set_stopwatch)
-                .setLabelBackgroundColor(getFabLabelBgColor(requireContext()))
                 .setLabelClickable(true)
                 .create()
         )
@@ -197,66 +202,22 @@ class HomeFragment : BaseFragment() {
      * a new alarm.
      */
     private fun invokeAlarmScheduler() {
-        val calendar = Calendar.getInstance()
-        val hour = calendar.get(Calendar.HOUR_OF_DAY)
-        val minute = calendar.get(Calendar.MINUTE)
-        val style = if (chronos!!.isDarkTheme()) 0 else com.google.android.material.R.style.Theme_MaterialComponents_Light_Dialog
+        val hourNow = Calendar.HOUR_OF_DAY
+        val minuteNow = Calendar.MINUTE
 
-        val timePickerDialog = TimePickerDialog(view.context, style, { _, selectedHour, selectedMinute ->
-            val manager = view.context.getSystemService(Context.ALARM_SERVICE) as AlarmManager
-            val alarm = chronos!!.newAlarm()
-            alarm.time[Calendar.HOUR_OF_DAY] = selectedHour
-            alarm.time[Calendar.MINUTE] = selectedMinute
-            alarm.setTime(chronos, manager, alarm.time.timeInMillis)
-            alarm.setEnabled(context, manager, true)
-            chronos?.onAlarmsChanged()
-        }, hour, minute, true)
-
-        timePickerDialog.show()
-    }
-
-    /**
-     * Helper extension function to manage the colors of the FAB.
-     */
-    private fun SpeedDialView.updateColors() {
-        when (chronos?.activityTheme) {
-            Chronos.THEME_DAY -> {
-                speedDialView.mainFabOpenedIconColor = resources.getColor(R.color.textColorPrimaryNight, chronos?.theme)
-                speedDialView.mainFabClosedIconColor = resources.getColor(R.color.textColorPrimaryNight, chronos?.theme)
-                speedDialView.mainFabOpenedBackgroundColor = resources.getColor(R.color.colorAccent, chronos?.theme)
-                speedDialView.mainFabClosedBackgroundColor = resources.getColor(R.color.colorAccent, chronos?.theme)
+        val timeChooserDialog = TimePickerDialog(view.context)
+        timeChooserDialog.setListener(object : TimePickerDialog.OnTimeChosenListener {
+            override fun onTimeChosen(hour: Int, minute: Int) {
+                val manager = view.context.getSystemService(Context.ALARM_SERVICE) as AlarmManager
+                val alarm = chronos!!.newAlarm()
+                alarm.time[hourNow] = hour
+                alarm.time[minuteNow] = minute
+                alarm.setTime(chronos, manager, alarm.time.timeInMillis)
+                alarm.setEnabled(context, manager, true)
+                chronos?.onAlarmsChanged()
             }
-            Chronos.THEME_NIGHT -> {
-                speedDialView.mainFabOpenedIconColor = resources.getColor(R.color.textColorPrimaryNight, chronos?.theme)
-                speedDialView.mainFabClosedIconColor = resources.getColor(R.color.textColorPrimaryNight, chronos?.theme)
-                speedDialView.mainFabOpenedBackgroundColor = resources.getColor(R.color.colorNightAccent, chronos?.theme)
-                speedDialView.mainFabClosedBackgroundColor = resources.getColor(R.color.colorNightAccent, chronos?.theme)
-            }
-            Chronos.THEME_DAY_NIGHT -> {
-                speedDialView.mainFabOpenedIconColor = resources.getColor(R.color.textColorPrimaryNight, chronos?.theme)
-                speedDialView.mainFabClosedIconColor = resources.getColor(R.color.textColorPrimaryNight, chronos?.theme)
-                speedDialView.mainFabOpenedBackgroundColor = resources.getColor(R.color.colorPrimary, chronos?.theme)
-                speedDialView.mainFabClosedBackgroundColor = resources.getColor(R.color.colorPrimary, chronos?.theme)
-            }
-            Chronos.THEME_AMOLED -> {
-                speedDialView.mainFabOpenedIconColor = resources.getColor(R.color.textColorPrimary, chronos?.theme)
-                speedDialView.mainFabClosedIconColor = resources.getColor(R.color.textColorPrimary, chronos?.theme)
-                speedDialView.mainFabOpenedBackgroundColor = resources.getColor(R.color.textColorPrimaryNight, chronos?.theme)
-                speedDialView.mainFabClosedBackgroundColor = resources.getColor(R.color.textColorPrimaryNight, chronos?.theme)
-            }
-            else -> return
-        }
-    }
-
-    /**
-     * Helper extension function to manage the background colors of the FAB label.
-     */
-    private fun getFabLabelBgColor(context: Context): Int {
-        return if (chronos!!.isDarkTheme()) {
-            ContextCompat.getColor(context, R.color.colorNightPrimary)
-        } else {
-            ContextCompat.getColor(context, R.color.colorPrimary)
-        }
+        })
+        timeChooserDialog.show()
     }
 
     /**

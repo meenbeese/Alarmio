@@ -9,8 +9,8 @@ import android.view.ViewGroup
 import android.widget.ArrayAdapter
 import android.widget.AutoCompleteTextView
 import android.widget.TextView
+import androidx.appcompat.app.AppCompatDelegate
 
-import com.google.android.material.textfield.TextInputLayout
 import com.meenbeese.chronos.Chronos
 import com.meenbeese.chronos.R
 import com.meenbeese.chronos.data.PreferenceData
@@ -55,6 +55,7 @@ class ThemePreferenceData(
             if (holder.themeAutoCompleteTextView.text.toString() == adapter.getItem(position)) {
                 PreferenceData.THEME.setValue(holder.itemView.context, position)
                 holder.sunriseLayout.visibility = if (position == Chronos.THEME_DAY_NIGHT) View.VISIBLE else View.GONE
+                applyTheme(position)
             }
         }
 
@@ -131,12 +132,29 @@ class ThemePreferenceData(
         }
     }
 
+    private fun applyTheme(theme: Int) {
+        when (theme) {
+            Chronos.THEME_DAY -> {
+                AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_NO)
+                chronos.setTheme(R.style.AppTheme)
+            }
+            Chronos.THEME_NIGHT -> {
+                AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_YES)
+                chronos.setTheme(R.style.AppTheme_Night)
+            }
+            Chronos.THEME_AMOLED -> {
+                AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_YES)
+                chronos.setTheme(R.style.AppTheme_Amoled)
+            }
+        }
+        chronos.recreate()
+    }
+
     /**
      * Holds child views of the current item.
      */
     class ViewHolder(v: View) : BasePreferenceData.ViewHolder(v) {
         val themeAutoCompleteTextView: AutoCompleteTextView = v.findViewById(R.id.themeSpinner)
-        val themeTextInputLayout: TextInputLayout = v.findViewById(R.id.themeDropdown)
         val sunriseLayout: View = v.findViewById(R.id.sunriseLayout)
         val sunriseView: SunriseSunsetView = v.findViewById(R.id.sunriseView)
         val sunriseTextView: TextView = v.findViewById(R.id.sunriseTextView)

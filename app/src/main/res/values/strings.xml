@@ -109,4 +109,5 @@
     <string name="visit_website">Visit my website</string>
     <string name="send_email">Send me an email</string>
     <string name="copyright_info">Copyright %1$d Meenbeese</string>
+    <string name="title_snooze_duration">Choose Snooze Duration</string>
 </resources>

@@ -17,13 +17,13 @@ import androidx.activity.ComponentActivity
 import androidx.media3.common.util.UnstableApi
 import androidx.vectordrawable.graphics.drawable.VectorDrawableCompat
 
-import com.google.android.material.dialog.MaterialAlertDialogBuilder
 import com.meenbeese.chronos.Chronos
 import com.meenbeese.chronos.R
 import com.meenbeese.chronos.data.AlarmData
 import com.meenbeese.chronos.data.PreferenceData
 import com.meenbeese.chronos.data.SoundData
 import com.meenbeese.chronos.data.TimerData
+import com.meenbeese.chronos.dialogs.SnoozeDurationDialog
 import com.meenbeese.chronos.dialogs.TimeChooserDialog
 import com.meenbeese.chronos.dialogs.TimeChooserDialog.OnTimeChosenListener
 import com.meenbeese.chronos.interfaces.SlideActionListener
@@ -185,9 +185,8 @@ class AlarmActivity : ComponentActivity(), SlideActionListener {
 
         stopAnnoyance()
 
-        val style = if (isDark) com.google.android.material.R.style.Theme_MaterialComponents_Dialog_Alert else com.google.android.material.R.style.Theme_MaterialComponents_Light_Dialog_Alert
-        MaterialAlertDialogBuilder(this@AlarmActivity, style)
-            .setItems(names) { _, which ->
+        val snoozeDurationDialog = SnoozeDurationDialog(this, names, object : SnoozeDurationDialog.OnSnoozeDurationSelectedListener {
+            override fun onSnoozeDurationSelected(which: Int) {
                 if (which < minutes.size) {
                     chronos!!.newTimer().apply {
                         setDuration(TimeUnit.MINUTES.toMillis(minutes[which].toLong()), chronos)
@@ -220,8 +219,8 @@ class AlarmActivity : ComponentActivity(), SlideActionListener {
                     }
                 }
             }
-            .setNegativeButton(android.R.string.cancel) { dialog, _ -> dialog.dismiss() }
-            .show()
+        })
+        snoozeDurationDialog.show()
 
         overlay?.performHapticFeedback(HapticFeedbackConstants.LONG_PRESS)
     }

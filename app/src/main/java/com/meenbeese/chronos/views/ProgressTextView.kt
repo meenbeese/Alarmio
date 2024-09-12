@@ -10,6 +10,9 @@ import android.util.AttributeSet
 import android.view.View
 import android.view.animation.LinearInterpolator
 
+import androidx.core.content.ContextCompat
+
+import com.meenbeese.chronos.R
 import com.meenbeese.chronos.utils.DimenUtils
 
 import kotlin.math.cos
@@ -29,27 +32,38 @@ class ProgressTextView : View {
     private var text: String? = null
     private var padding: Int = DimenUtils.dpToPx(4f)
 
+    private val lineColor = ContextCompat.getColor(context, R.color.colorAccent)
+    private val circleColor = ContextCompat.getColor(context, R.color.textColorPrimary)
+    private val referenceCircleColor = ContextCompat.getColor(context, R.color.colorAccent)
+    private val backgroundColor = ContextCompat.getColor(context, R.color.colorIndeterminateText)
+    private val textColorPrimary = ContextCompat.getColor(context, R.color.colorIndeterminateText)
+
     private var linePaint: Paint = Paint().apply {
         isAntiAlias = true
         style = Paint.Style.STROKE
         strokeWidth = padding.toFloat()
+        color = lineColor
     }
 
     private var circlePaint: Paint = Paint().apply {
         isAntiAlias = true
+        color = circleColor
     }
 
     private var referenceCirclePaint: Paint = Paint().apply {
         isAntiAlias = true
+        color = referenceCircleColor
     }
 
     private var backgroundPaint: Paint = Paint().apply {
         isAntiAlias = true
         style = Paint.Style.STROKE
         strokeWidth = padding.toFloat()
+        color = backgroundColor
     }
 
     private var textPaint: Paint = Paint().apply {
+        color = textColorPrimary
         isAntiAlias = true
         textAlign = Paint.Align.CENTER
         textSize = DimenUtils.spToPx(34f).toFloat()
@@ -150,5 +164,4 @@ class ProgressTextView : View {
             canvas.drawText(str, (size / 2).toFloat(), size / 2 - (textPaint.descent() + textPaint.ascent()) / 2, textPaint)
         }
     }
-
 }

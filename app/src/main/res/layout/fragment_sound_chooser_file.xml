@@ -18,7 +18,7 @@
             android:layout_gravity="end"
             android:layout_marginStart="16dp"
             android:layout_marginEnd="16dp"
-            android:textColor="@color/colorNightAccent"
+            android:textColor="@color/colorAccent"
             android:textSize="12sp"
             android:visibility="gone" />
 
@@ -41,7 +41,7 @@
 
             <com.google.android.material.button.MaterialButton
                 android:id="@+id/addAudioFile"
-                android:backgroundTint="?android:colorForeground"
+                android:backgroundTint="?android:colorAccent"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="4dp"

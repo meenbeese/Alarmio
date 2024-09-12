@@ -14,7 +14,7 @@
         android:layout_width="42dp"
         android:layout_height="42dp"
         android:scaleType="centerInside"
-        tools:tint="@color/textColorPrimaryNight"
+        tools:tint="@color/textColorPrimary"
         app:srcCompat="@drawable/ic_sound"
         android:layout_marginEnd="8dp" />
 

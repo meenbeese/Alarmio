@@ -3,7 +3,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    xmlns:tools="http://schemas.android.com/tools"
+    android:background="@color/colorPrimary"
     android:orientation="vertical">
 
     <LinearLayout
@@ -15,11 +15,12 @@
         <ImageView
             android:id="@+id/back"
             android:layout_width="56dp"
-            tools:tint="@color/textColorPrimaryNight"
             android:layout_height="56dp"
+            android:layout_marginTop="22dp"
             android:background="?attr/selectableItemBackgroundBorderless"
             android:scaleType="centerInside"
-            app:srcCompat="@drawable/ic_back" />
+            app:srcCompat="@drawable/ic_back"
+            app:tint="@color/textColorPrimary" />
 
     </LinearLayout>
 
@@ -34,7 +35,6 @@
             android:layout_height="wrap_content"
             android:layout_gravity="center"
             android:layout_margin="16dp" />
-
     </FrameLayout>
 
     <com.google.android.material.floatingactionbutton.FloatingActionButton
@@ -42,7 +42,9 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="center_horizontal"
-        android:layout_margin="16dp"
+        android:layout_margin="32dp"
+        android:backgroundTint="?android:colorAccent"
+        android:foregroundTint="@color/colorPrimary"
         app:srcCompat="@drawable/ic_close" />
 
 </LinearLayout>

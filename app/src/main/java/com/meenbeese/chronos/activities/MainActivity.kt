@@ -3,20 +3,24 @@ package com.meenbeese.chronos.activities
 import android.content.Intent
 import android.os.Bundle
 import android.provider.AlarmClock
-import android.provider.Settings
+import android.util.Log
 import android.view.WindowManager
 
 import androidx.activity.OnBackPressedCallback
 import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
+import androidx.appcompat.app.AppCompatDelegate
 import androidx.core.splashscreen.SplashScreen.Companion.installSplashScreen
 import androidx.fragment.app.FragmentManager
 
-import com.google.android.material.dialog.MaterialAlertDialogBuilder
 import com.meenbeese.chronos.Chronos
 import com.meenbeese.chronos.Chronos.ActivityListener
+import com.meenbeese.chronos.Chronos.Companion.THEME_AMOLED
+import com.meenbeese.chronos.Chronos.Companion.THEME_DAY
+import com.meenbeese.chronos.Chronos.Companion.THEME_NIGHT
 import com.meenbeese.chronos.R
 import com.meenbeese.chronos.data.PreferenceData
+import com.meenbeese.chronos.dialogs.BackgroundPermissionsDialog
 import com.meenbeese.chronos.fragments.BaseFragment
 import com.meenbeese.chronos.fragments.HomeFragment
 import com.meenbeese.chronos.fragments.StopwatchFragment
@@ -33,6 +37,7 @@ class MainActivity : AppCompatActivity(), FragmentManager.OnBackStackChangedList
         super.onCreate(savedInstanceState)
         installSplashScreen()
         enableEdgeToEdge()
+        applySavedTheme()
         setContentView(R.layout.activity_main)
         window.setFlags(
             WindowManager.LayoutParams.FLAG_LAYOUT_NO_LIMITS,
@@ -69,14 +74,28 @@ class MainActivity : AppCompatActivity(), FragmentManager.OnBackStackChangedList
 
         // Background permissions info
         if (!PreferenceData.INFO_BACKGROUND_PERMISSIONS.getValue(this, false)) {
-            val style = if (chronos!!.isDarkTheme()) com.google.android.material.R.style.Theme_MaterialComponents_Dialog_Alert else com.google.android.material.R.style.Theme_MaterialComponents_Light_Dialog_Alert
-            val alert = MaterialAlertDialogBuilder(this, style)
-            alert.setTitle(getString(R.string.info_background_permissions_title))
-            alert.setMessage(getString(R.string.info_background_permissions_body))
-            alert.setPositiveButton(applicationContext.getString(android.R.string.ok)){_, _ ->  PreferenceData.INFO_BACKGROUND_PERMISSIONS.setValue(this@MainActivity, true)
-                startActivity(Intent(Settings.ACTION_MANAGE_OVERLAY_PERMISSION))}
-            alert.setNegativeButton(applicationContext.getString(android.R.string.cancel),  null)
-            alert.show()
+            val backgroundPermissionsDialog = BackgroundPermissionsDialog(this)
+            backgroundPermissionsDialog.show()
+        }
+    }
+
+    private fun applySavedTheme() {
+        val theme = chronos?.activityTheme
+        Log.d("MAIN", "Theme: $theme")
+
+        when (theme) {
+            THEME_DAY -> {
+                AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_NO)
+                setTheme(R.style.AppTheme)
+            }
+            THEME_NIGHT -> {
+                AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_YES)
+                setTheme(R.style.AppTheme_Night)
+            }
+            THEME_AMOLED -> {
+                AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_YES)
+                setTheme(R.style.AppTheme_Amoled)
+            }
         }
     }
 
@@ -187,6 +206,10 @@ class MainActivity : AppCompatActivity(), FragmentManager.OnBackStackChangedList
 
     override fun fetchFragmentManager(): FragmentManager {
         return supportFragmentManager
+    }
+
+    override fun getActivity(): AppCompatActivity {
+        return this
     }
 
     companion object {

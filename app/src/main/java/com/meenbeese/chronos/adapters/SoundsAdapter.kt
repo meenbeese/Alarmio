@@ -7,6 +7,7 @@ import android.view.ViewGroup
 import android.widget.ImageView
 import android.widget.TextView
 
+import androidx.core.content.ContextCompat
 import androidx.media3.common.util.UnstableApi
 import androidx.recyclerview.widget.RecyclerView
 import androidx.vectordrawable.graphics.drawable.AnimatedVectorDrawableCompat
@@ -39,12 +40,12 @@ class SoundsAdapter(
             holder.title.setText(R.string.title_sound_none)
             holder.icon.setOnClickListener(null)
             holder.itemView.setOnClickListener {
-                listener?.onSoundChosen(
-                    null
-                )
+                listener?.onSoundChosen(null)
             }
             setPlaying(holder, isPlaying = false, isAnimated = false)
             holder.icon.setImageResource(R.drawable.ic_ringtone_disabled)
+            val color = ContextCompat.getColor(holder.itemView.context, R.color.textColorPrimary)
+            holder.icon.setColorFilter(color)
         } else {
             val sound = sounds[position - 1]
             holder.title.text = sound.name
@@ -65,9 +66,7 @@ class SoundsAdapter(
                 setPlaying(holder, currentlyPlaying == position1, true)
             }
             holder.itemView.setOnClickListener {
-                listener?.onSoundChosen(
-                    sounds[holder.bindingAdapterPosition - 1]
-                )
+                listener?.onSoundChosen(sounds[holder.bindingAdapterPosition - 1])
             }
             setPlaying(holder, sound.isPlaying(chronos), false)
         }
@@ -75,17 +74,21 @@ class SoundsAdapter(
 
     @SuppressLint("CheckResult")
     private fun setPlaying(holder: ViewHolder, isPlaying: Boolean, isAnimated: Boolean) {
+        val color = ContextCompat.getColor(holder.itemView.context, R.color.textColorPrimary)
+
         if (isAnimated) {
             val drawable = AnimatedVectorDrawableCompat.create(
                 chronos, if (isPlaying) R.drawable.ic_play_to_pause else R.drawable.ic_pause_to_play
             )
             if (drawable != null) {
                 holder.icon.setImageDrawable(drawable)
+                holder.icon.setColorFilter(color)
                 drawable.start()
                 return
             }
         }
         holder.icon.setImageResource(if (isPlaying) R.drawable.ic_pause else R.drawable.ic_play)
+        holder.icon.setColorFilter(color)
     }
 
     override fun getItemCount(): Int {

@@ -9,7 +9,7 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:background="?attr/selectableItemBackground"
+        android:background="?android:colorPrimary"
         android:orientation="vertical">
 
         <FrameLayout
@@ -46,6 +46,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:textSize="12sp"
+            android:textColor="?android:textColorSecondary"
             android:layout_marginStart="16dp"
             android:layout_marginEnd="16dp"
             android:layout_marginBottom="6dp"
@@ -141,7 +142,7 @@
                         android:scaleType="centerInside"
                         app:srcCompat="@drawable/ic_ringtone_disabled"
                         tools:alpha="0.333"
-                        tools:tint="@color/textColorPrimaryNight" />
+                        tools:tint="@color/textColorPrimary" />
 
                     <TextView
                         android:id="@+id/ringtoneText"
@@ -175,7 +176,7 @@
                         android:layout_marginBottom="4dp"
                         android:scaleType="centerInside"
                         app:srcCompat="@drawable/ic_vibrate_to_none"
-                        tools:tint="@color/textColorPrimaryNight" />
+                        tools:tint="@color/textColorPrimary" />
 
                     <TextView
                         android:layout_width="wrap_content"
@@ -211,8 +212,9 @@
                 android:paddingStart="8dp"
                 android:paddingEnd="8dp"
                 android:scaleType="centerInside"
-                app:srcCompat="@drawable/ic_expand"
-                tools:tint="@color/textColorPrimaryNight" />
+                android:tintMode="src_in"
+                app:tint="@color/colorAccent"
+                app:srcCompat="@drawable/ic_expand" />
 
             <LinearLayout
                 android:id="@+id/nameContainer"
@@ -228,6 +230,7 @@
                     android:id="@+id/name"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
+                    android:autofillHints="@string/title_alarm_name"
                     android:background="@null"
                     android:ellipsize="end"
                     android:gravity="center_vertical"
@@ -248,7 +251,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="1dp"
                     android:layout_marginBottom="4dp"
-                    android:background="@color/textColorSecondaryNight" />
+                    android:background="@color/textColorSecondary" />
 
             </LinearLayout>
 
@@ -288,7 +291,7 @@
                     android:scaleType="centerInside"
                     app:srcCompat="@drawable/ic_repeat"
                     tools:alpha="0.333"
-                    tools:tint="@color/textColorPrimaryNight" />
+                    tools:tint="@color/textColorPrimary" />
 
                 <ImageView
                     android:id="@+id/soundIndicator"
@@ -296,9 +299,10 @@
                     android:layout_height="match_parent"
                     android:layout_gravity="center"
                     android:scaleType="centerInside"
+                    app:tint="?android:textColorSecondary"
                     app:srcCompat="@drawable/ic_sound"
                     tools:alpha="0.333"
-                    tools:tint="@color/textColorPrimaryNight" />
+                    tools:tint="@color/textColorPrimary" />
 
                 <ImageView
                     android:id="@+id/vibrateIndicator"
@@ -307,7 +311,7 @@
                     android:layout_gravity="center"
                     android:scaleType="centerInside"
                     app:srcCompat="@drawable/ic_vibrate"
-                    tools:tint="@color/textColorPrimaryNight" />
+                    tools:tint="@color/textColorPrimary" />
 
             </LinearLayout>
 

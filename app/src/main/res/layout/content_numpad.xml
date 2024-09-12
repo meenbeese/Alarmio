@@ -38,7 +38,7 @@
             android:scaleType="centerInside"
             android:visibility="visible"
             app:srcCompat="@drawable/ic_backspace"
-            app:tint="@color/textColorPrimaryNight" />
+            app:tint="@color/textColorPrimary" />
 
     </LinearLayout>
 

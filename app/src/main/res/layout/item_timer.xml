@@ -40,7 +40,7 @@
             android:layout_marginEnd="4dp"
             android:background="?attr/selectableItemBackgroundBorderless"
             android:scaleType="centerInside"
-            tools:tint="@color/textColorPrimaryNight"
+            tools:tint="@color/textColorPrimary"
             app:srcCompat="@drawable/ic_close" />
 
     </LinearLayout>

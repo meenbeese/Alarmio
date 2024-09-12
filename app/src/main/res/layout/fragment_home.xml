@@ -50,7 +50,11 @@
             android:id="@+id/tabLayout"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            app:tabMode="fixed" />
+            app:tabMode="fixed"
+            app:tabBackground="@color/colorPrimary"
+            app:tabTextColor="@color/colorIndeterminateText"
+            app:tabSelectedTextColor="@color/textColorSecondary"
+            app:tabIndicatorColor="@color/colorAccent" />
 
         <androidx.viewpager.widget.ViewPager
             android:id="@+id/viewPager"
@@ -69,7 +73,10 @@
         android:baselineAligned="true"
         android:clickable="true"
         android:focusable="true"
+        android:backgroundTint="@color/colorAccent"
         app:sdMainFabClosedSrc="@drawable/ic_add"
+        app:sdMainFabOpenedIconColor="@color/colorPrimary"
+        app:sdMainFabClosedIconColor="@color/colorPrimary"
         app:sdUseReverseAnimationOnClose="true" />
 
 </androidx.coordinatorlayout.widget.CoordinatorLayout>
