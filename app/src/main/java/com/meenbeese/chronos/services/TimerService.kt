@@ -29,7 +29,6 @@ class TimerService : Service() {
             if (timers?.isNotEmpty() == true) {
                 val notification: Notification? = notification
                 if (notification != null) {
-                    startForeground(NOTIFICATION_ID, notification)
                     handler.removeCallbacks(this)
                     handler.postDelayed(this, 10)
                 }
@@ -39,6 +38,7 @@ class TimerService : Service() {
     private var timers: List<TimerData>? = null
     private var notificationManager: NotificationManager? = null
     private var notificationString: String? = null
+
     override fun onCreate() {
         super.onCreate()
         timers = (applicationContext as Chronos).timers
@@ -46,9 +46,13 @@ class TimerService : Service() {
     }
 
     override fun onStartCommand(intent: Intent, flags: Int, startId: Int): Int {
+        val notification = notification
+        if (notification != null) {
+            startForeground(NOTIFICATION_ID, notification)
+        }
         handler.removeCallbacks(runnable)
         runnable.run()
-        return super.onStartCommand(intent, flags, startId)
+        return START_STICKY
     }
 
     private val notification: Notification?
