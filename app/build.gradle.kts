@@ -69,8 +69,8 @@ dependencies {
     implementation("androidx.preference:preference-ktx:1.2.1")
 
     // Media
-    implementation("androidx.media3:media3-exoplayer:1.4.1")
-    implementation("androidx.media3:media3-exoplayer-hls:1.4.1")
+    implementation("androidx.media3:media3-exoplayer:1.5.1")
+    implementation("androidx.media3:media3-exoplayer-hls:1.5.1")
     implementation("androidx.media3:media3-ui:1.4.1")
 
     // Material
